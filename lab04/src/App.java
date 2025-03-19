@@ -33,26 +33,26 @@ public class App {
     }
 
     public static void create()throws SQLException {
-    Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
     
-    System.out.print("Number for the new account: ");
-    long nro = scanner.nextLong();
+        System.out.print("Number for the new account: ");
+        long nro = scanner.nextLong();
     
-    System.out.print("New account balance:");
-    BigDecimal amount = scanner.nextBigDecimal();
+        System.out.print("New account balance:");
+        BigDecimal amount = scanner.nextBigDecimal();
     
-    String url = System.getenv("jdbc:postgresql://db.rfdccujyluhkjujhnjti.supabase.co:5432/postgres?user=postgres&password=Gu@1597532");
+        String url = System.getenv("jdbc:postgresql://db.rfdccujyluhkjujhnjti.supabase.co:5432/postgres?user=postgres&password=Gu@1597532");
     
-    String sql = "INSERT INTO account VALUES (?,?)";
+        String sql = "INSERT INTO account VALUES (?,?)";
     
-    try (Connection c = DriverManager.getConnection(url);
-        PreparedStatement prepstm = c.prepareStatement(sql)) {
+        try (Connection c = DriverManager.getConnection(url);
+            PreparedStatement prepstm = c.prepareStatement(sql)) {
         
-        prepstm.setLong(1, nro);
-        prepstm.setBigDecimal(2, amount);
+            prepstm.setLong(1, nro);
+            prepstm.setBigDecimal(2, amount);
         
-        int ret = prepstm.executeUpdate();
-        System.out.println("Number of records entered: " + ret);
-    }
+            int ret = prepstm.executeUpdate();
+            System.out.println("Number of records entered: " + ret);
+        }
     }
 }
