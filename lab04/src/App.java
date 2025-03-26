@@ -6,16 +6,19 @@ public class App {
     public static void main(String[] args) throws SQLException {
         System.out.println("Good Evening!");
         String url = "jdbc:postgresql://db.rfdccujyluhkjujhnjti.supabase.co:5432/postgres?user=postgres&password=Gu@1597532";
-        Connection connection = DriverManager.getConnection(url);
+        Connection connection = DriverManager.getConnection(url, url, url);
         String sql = "SELECT * FROM account";
         PreparedStatement stm = connection.prepareStatement(sql);
         ResultSet rset = stm.executeQuery();
         
-        while(rset.next()){
-            long accountNumber = rset.getLong("accountNumber");
-            double amount = rset.getLong("amount");
-            System.out.print("Account number: " + accountNumber);
-            System.err.println("Amount R$ " + amount);
+        try{
+            while(rset.next()){
+                long accountNumber = rset.getLong("accountNumber");
+                double amount = rset.getLong("amount");
+                System.out.print("Account number: " + accountNumber);
+                System.err.println("Amount R$ " + amount);
+            }
+        } catch(SQLException ex){
         }
     }
 
